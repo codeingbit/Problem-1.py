@@ -1,0 +1,39 @@
+class Calculator:
+    def _init_(self, a, b):
+        self.a = float(a)
+        self.b = float(b)
+
+    def add(self):
+        return self.a + self.b
+
+    def subtract(self):
+        return self.a - self.b
+
+    def multiply(self):
+        return self.a * self.b
+
+    def divide(self):
+        if self.b == 0:
+            raise ZeroDivisionError("Cannot divide by zero")
+        return self.a / self.b
+
+    def calculate(self, operation):
+        operations = {
+            "addition": self.add,
+            "subtraction": self.subtract,
+            "multiplication": self.multiply,
+            "division": self.divide,
+            "+": self.add,
+            "-": self.subtract,
+            "*": self.multiply,
+            "/": self.divide
+        }
+operation = operation.lower()
+        if operation in operations:
+            try:
+                result = operations[operation]()
+                return result
+            except ZeroDivisionError as e:
+                return str(e)
+        else:
+            return "Invalid operation. Supported operations: +, -, *, /, addition, subtraction, multiplication, division"
